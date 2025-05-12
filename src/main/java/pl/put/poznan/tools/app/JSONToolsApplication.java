@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import pl.put.poznan.tools.logic.IdentityJsonTransformer;
 import pl.put.poznan.tools.logic.JsonKeyFilter;
+import pl.put.poznan.tools.logic.JsonKeyRemove;
 import pl.put.poznan.tools.logic.JsonTransformer;
 
 import java.util.Set;
@@ -15,6 +16,9 @@ import java.util.Set;
 public class JSONToolsApplication {
 
     public static void main(String[] args) {
+
+        // Test code
+        // ------------------------------------------------------------
         String json = "{\n" +
                 "  \"name\": \"Alice\",\n" +
                 "  \"age\": 30,\n" +
@@ -26,13 +30,13 @@ public class JSONToolsApplication {
                 "  ]\n" +
                 "}";
 
-        Set<String> keysToKeep = Set.of("name", "age", "projects");
+        Set<String> keysToRemove = Set.of("name", "age", "projects");
 
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(json);
 
-            JsonTransformer transformer = new JsonKeyFilter(new IdentityJsonTransformer(), keysToKeep);
+            JsonTransformer transformer = new JsonKeyRemove(new IdentityJsonTransformer(), keysToRemove);
 
             JsonNode filtered = transformer.transform(root);
 
@@ -42,6 +46,7 @@ public class JSONToolsApplication {
         } catch (Exception e) {
             System.err.println("Invalid JSON: " + e.getMessage());
         }
+        // ------------------------------------------------------------
 
         SpringApplication.run(JSONToolsApplication.class, args);
     }

@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import pl.put.poznan.tools.logic.IdentityJsonTransformer;
 import pl.put.poznan.tools.logic.JsonKeyFilter;
 import pl.put.poznan.tools.logic.JsonKeyRemove;
+import pl.put.poznan.tools.logic.JsonMinifyTransformer;
+import pl.put.poznan.tools.logic.JsonPrettyPrintTransformer;
 import pl.put.poznan.tools.logic.JsonTransformer;
 
 import java.util.Set;
@@ -45,6 +47,32 @@ public class JSONToolsApplication {
 
         } catch (Exception e) {
             System.err.println("Invalid JSON: " + e.getMessage());
+        }
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(json);
+
+            JsonMinifyTransformer minifier = new JsonMinifyTransformer(new IdentityJsonTransformer());
+
+            String result = minifier.minify(root);
+            System.out.println("\nMinified JSON:\n" + result);
+
+        } catch (Exception e) {
+            System.err.println("\nInvalid JSON: " + e.getMessage());
+        }
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(json);
+
+            JsonPrettyPrintTransformer prettyJson = new JsonPrettyPrintTransformer(new IdentityJsonTransformer());
+            
+            String result = prettyJson.prettyPrint(root);
+            System.out.println("\nPretty JSON:\n" + result);
+
+        } catch (Exception e) {
+            System.err.println("\nInvalid JSON: " + e.getMessage());
         }
         // ------------------------------------------------------------
 

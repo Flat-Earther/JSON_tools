@@ -40,10 +40,8 @@ public class JSONToolsApplication {
 
             JsonTransformer transformer = new JsonKeyRemove(new IdentityJsonTransformer(), keysToRemove);
 
-            JsonNode filtered = transformer.transform(root);
-
-            String result = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(filtered);
-            System.out.println(result);
+            String filtered = transformer.transform(json);
+            System.out.println(filtered);
 
         } catch (Exception e) {
             System.err.println("Invalid JSON: " + e.getMessage());
@@ -67,7 +65,7 @@ public class JSONToolsApplication {
             JsonNode root = mapper.readTree(json);
 
             JsonPrettyPrintTransformer prettyJson = new JsonPrettyPrintTransformer(new IdentityJsonTransformer());
-            
+
             String result = prettyJson.prettyPrint(root);
             System.out.println("\nPretty JSON:\n" + result);
 

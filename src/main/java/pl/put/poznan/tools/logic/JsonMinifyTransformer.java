@@ -34,7 +34,7 @@ public class JsonMinifyTransformer implements JsonTransformer {
 
     /**
      * Transforms the input JSON by first applying the inner transformer.
-     * This method does not perform minification itself — use {@link #minify(JsonNode)} for that.
+     * This method does not perform minification itself — use {@link #transformToString(JsonNode)} for that.
      *
      * @param node the input {@link JsonNode}
      * @return the transformed {@link JsonNode}
@@ -51,7 +51,7 @@ public class JsonMinifyTransformer implements JsonTransformer {
      * @return a minified JSON string without unnecessary whitespace
      * @throws Exception if the node can't be serialized
      */
-    public String minify(JsonNode node) throws Exception {
+    public String transformToString(JsonNode node) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(transform(node));
     }

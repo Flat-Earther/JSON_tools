@@ -1,6 +1,7 @@
 package pl.put.poznan.tools.logic;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Represents a transformation operation on a JSON structure.
@@ -18,4 +19,8 @@ public interface JsonTransformer {
      * @return the transformed {@link JsonNode}
      */
     JsonNode transform(JsonNode node);
+    default String transformToString(JsonNode node) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(transform(node)); // default raw
+    }
 }

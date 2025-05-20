@@ -33,7 +33,7 @@ public class JsonPrettyPrintTransformer implements JsonTransformer {
 
     /**
      * Transforms the input JSON by first applying the inner transformer.
-     * This method does not perform pretty-printing itself — use {@link #prettyPrint(JsonNode)} for that.
+     * This method does not perform pretty-printing itself — use {@link #transformToString(JsonNode)} for that.
      *
      * @param node the input {@link JsonNode}
      * @return the transformed {@link JsonNode}
@@ -50,7 +50,7 @@ public class JsonPrettyPrintTransformer implements JsonTransformer {
      * @return a formatted JSON string with indentation
      * @throws Exception if the node can't be serialized
      */
-    public String prettyPrint(JsonNode node) throws Exception {
+    public String transformToString(JsonNode node) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(transform(node));
     }

@@ -1,6 +1,8 @@
 package pl.put.poznan.tools.logic;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.Set;
@@ -17,7 +19,7 @@ import java.util.Set;
  * <pre>
  * Set&lt;String&gt; keys = Set.of("name", "age");
  * JsonTransformer transformer = new JsonKeyFilter(new IdentityJsonTransformer(), keys);
- * JsonNode filtered = transformer.transform(originalJson);
+ * String filteredJson = transformer.transform(originalJsonString);
  * </pre>
  * </p>
  */
@@ -25,6 +27,7 @@ public class JsonKeyFilter implements JsonTransformer {
 
     private final JsonTransformer inner;
     private final Set<String> keysToKeep;
+    ObjectMapper mapper;
 
     /**
      * Constructs a JsonKeyFilter with an inner transformer and a set of keys to retain.
@@ -35,31 +38,34 @@ public class JsonKeyFilter implements JsonTransformer {
     public JsonKeyFilter(JsonTransformer inner, Set<String> keysToKeep) {
         this.inner = inner;
         this.keysToKeep = keysToKeep;
+        mapper = new ObjectMapper();
     }
 
     /**
      * Transforms the input JSON by first applying the inner transformer,
      * then filtering the result to keep only the specified keys.
      *
-     * @param node the input {@link JsonNode}
-     * @return a new {@link JsonNode} containing only the retained keys
+     * @param json the input JSON string
+     * @return a new JSON string containing only the retained keys
+     * @throws JsonProcessingException if the input or output JSON cannot be processed
      */
     @Override
-    public JsonNode transform(JsonNode node) {
+    public String transform(String json) throws JsonProcessingException {
         // First apply the inner transformer (if any)
-        JsonNode processed = inner.transform(node);
+        json = inner.transform(json);
+        JsonNode node = mapper.readTree(json);
 
         // Create a new JSON node
         ObjectNode filteredNode = ((ObjectNode) node).objectNode();
 
-        // Add keys to keep to the new node
-        processed.fields().forEachRemaining(entry -> {
+        // Add only the keys we want to keep
+        node.fields().forEachRemaining(entry -> {
             if (keysToKeep.contains(entry.getKey())) {
                 filteredNode.set(entry.getKey(), entry.getValue());
             }
         });
 
-        // return the new node
-        return filteredNode;
+        // Return the transformed JSON as a string
+        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(filteredNode);
     }
 }

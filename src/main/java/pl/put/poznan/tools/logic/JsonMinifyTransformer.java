@@ -1,10 +1,11 @@
 package pl.put.poznan.tools.logic;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * A concrete decorator in the Decorator design pattern that minifies JSON output
+ * A concrete decorator in the Decorator design pattern that minifies JSON object
  * by removing unnecessary whitespace and formatting.
  * <p>
  * This class wraps another {@link JsonTransformer} and provides a utility method
@@ -15,13 +16,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Example usage:
  * <pre>
  * JsonTransformer transformer = new JsonMinifyTransformer(new IdentityJsonTransformer());
- * String result = transformer.minify(originalJson);
+ * String mini = transformer.transform(originalJson);
  * </pre>
  * </p>
  */
 public class JsonMinifyTransformer implements JsonTransformer {
 
     private final JsonTransformer inner;
+    ObjectMapper mapper;
 
     /**
      * Constructs a JsonMinifyTransformer with an inner transformer.
@@ -30,29 +32,20 @@ public class JsonMinifyTransformer implements JsonTransformer {
      */
     public JsonMinifyTransformer(JsonTransformer inner) {
         this.inner = inner;
+        mapper = new ObjectMapper();
     }
 
     /**
-     * Transforms the input JSON by first applying the inner transformer.
-     * This method does not perform minification itself — use {@link #minify(JsonNode)} for that.
+     * Converts the input JSON string into its minified (single-line) string representation.
      *
-     * @param node the input {@link JsonNode}
-     * @return the transformed {@link JsonNode}
+     * @param json the input JSON string
+     * @return a minified JSON string without unnecessary whitespace
+     * @throws JsonProcessingException if the input JSON can't be parsed or serialized
      */
     @Override
-    public JsonNode transform(JsonNode node) {
-        return inner.transform(node);
-    }
-
-    /**
-     * Converts the transformed JSON into its minified (single-line) string representation.
-     *
-     * @param node the input {@link JsonNode}
-     * @return a minified JSON string without unnecessary whitespace
-     * @throws Exception if the node can't be serialized
-     */
-    public String minify(JsonNode node) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(transform(node));
+    public String transform(String json) throws JsonProcessingException {
+        json = inner.transform(json);
+        JsonNode node = mapper.readTree(json);
+        return mapper.writeValueAsString(node);
     }
 }

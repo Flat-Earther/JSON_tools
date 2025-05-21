@@ -53,8 +53,8 @@ public class JSONToolsApplication {
 
             JsonMinifyTransformer minifier = new JsonMinifyTransformer(new IdentityJsonTransformer());
 
-            String result = minifier.minify(root);
-            System.out.println("\nMinified JSON:\n" + result);
+            String mini = minifier.transform(json);
+            System.out.println("\nMinified JSON:\n" + mini);
 
         } catch (Exception e) {
             System.err.println("\nInvalid JSON: " + e.getMessage());
@@ -66,8 +66,8 @@ public class JSONToolsApplication {
 
             JsonPrettyPrintTransformer prettyJson = new JsonPrettyPrintTransformer(new IdentityJsonTransformer());
 
-            String result = prettyJson.prettyPrint(root);
-            System.out.println("\nPretty JSON:\n" + result);
+            String pretty = prettyJson.transform(json);
+            System.out.println("\nPretty JSON:\n" + pretty);
 
         } catch (Exception e) {
             System.err.println("\nInvalid JSON: " + e.getMessage());

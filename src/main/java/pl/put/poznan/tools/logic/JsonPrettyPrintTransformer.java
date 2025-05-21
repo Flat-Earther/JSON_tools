@@ -1,5 +1,6 @@
 package pl.put.poznan.tools.logic;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,13 +15,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Example usage:
  * <pre>
  * JsonTransformer transformer = new JsonPrettyPrintTransformer(new IdentityJsonTransformer());
- * String result = transformer.prettyPrint(originalJson);
+ * String prettyprint = transformer.transform(originalJson);
  * </pre>
  * </p>
  */
 public class JsonPrettyPrintTransformer implements JsonTransformer {
 
     private final JsonTransformer inner;
+    ObjectMapper mapper;
 
     /**
      * Constructs a JsonPrettyPrintTransformer with an inner transformer.
@@ -29,29 +31,20 @@ public class JsonPrettyPrintTransformer implements JsonTransformer {
      */
     public JsonPrettyPrintTransformer(JsonTransformer inner) {
         this.inner = inner;
+        mapper = new ObjectMapper();
     }
 
     /**
-     * Transforms the input JSON by first applying the inner transformer.
-     * This method does not perform pretty-printing itself — use {@link #prettyPrint(JsonNode)} for that.
+     * Converts the input JSON string into its pretty-printed (indented) string representation.
      *
-     * @param node the input {@link JsonNode}
-     * @return the transformed {@link JsonNode}
+     * @param json the input JSON string
+     * @return a formatted JSON string with indentation
+     * @throws JsonProcessingException if the input JSON can't be parsed or serialized
      */
     @Override
-    public JsonNode transform(JsonNode node) {
-        return inner.transform(node);
-    }
-
-    /**
-     * Converts a JsonNode into its pretty-printed (indented) string representation.
-     *
-     * @param node the input JsonNode
-     * @return a formatted JSON string with indentation
-     * @throws Exception if the node can't be serialized
-     */
-    public String prettyPrint(JsonNode node) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(transform(node));
+    public String transform(String json) throws JsonProcessingException {
+        json = inner.transform(json);
+        JsonNode node = mapper.readTree(json);
+        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(node);
     }
 }

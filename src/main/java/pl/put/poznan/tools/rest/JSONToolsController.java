@@ -1,46 +1,70 @@
 package pl.put.poznan.tools.rest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import pl.put.poznan.tools.logic.IdentityJsonTransformer;
 import pl.put.poznan.tools.logic.JSONTools;
+import pl.put.poznan.tools.logic.JsonMinifyTransformer;
 
 import java.util.Arrays;
+import java.util.Set;
 
 
 @RestController
-@RequestMapping("/{text}")
+@RequestMapping("/api/json")
 public class JSONToolsController {
 
     private static final Logger logger = LoggerFactory.getLogger(JSONToolsController.class);
+    private final JSONTools transformer = new JSONTools();
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public String get(@PathVariable String text,
-                              @RequestParam(value="transforms", defaultValue="upper,escape") String[] transforms) {
+    @PostMapping(path = "/prettyprint", produces = "application/json")
+    public String prettyPrint(@RequestBody String fullJson) {
 
-        // log the parameters
-        logger.debug(text);
-        logger.debug(Arrays.toString(transforms));
+        logger.debug(fullJson);
 
-        // perform the transformation, you should run your logic here, below is just a silly example
-        JSONTools transformer = new JSONTools(transforms);
-        return transformer.transform(text);
+        return transformer.prettyPrint(fullJson);
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public String post(@PathVariable String text,
-                      @RequestBody String[] transforms) {
+    @PostMapping(path = "/minify", produces = "application/json")
+    public String minify(@RequestBody String fullJson) {
 
-        // log the parameters
-        logger.debug(text);
-        logger.debug(Arrays.toString(transforms));
+        logger.debug(fullJson);
 
-        // perform the transformation, you should run your logic here, below is just a silly example
-        JSONTools transformer = new JSONTools(transforms);
-        return transformer.transform(text);
+        return transformer.minify(fullJson);
     }
 
+    @PostMapping(path = "/keyfilter", produces = "application/json")
+    public String keyFilter(@RequestBody String fullJson,
+                         @RequestParam Set<String> keys) {
 
+        logger.debug(fullJson);
 
+        return transformer.keyFilter(fullJson, keys);
+    }
+
+    @PostMapping(path = "/keyremove", produces = "application/json")
+    public String keyRemove(@RequestBody String fullJson,
+                            @RequestParam Set<String> keys) {
+
+        logger.debug(fullJson);
+
+        return transformer.keyRemove(fullJson, keys);
+    }
+
+    @PostMapping(path = "/compare", produces = "application/json")
+    public String keyRemove(@RequestBody String[] jsons) {
+
+        for(String json: jsons) {
+            logger.debug(json);
+        }
+
+        if (jsons.length != 2) {
+            throw new IllegalArgumentException("Exactly two JSON structures must be provided.");
+        }
+
+        return transformer.compare(jsons[0], jsons[1]);
+    }
 }
 
 

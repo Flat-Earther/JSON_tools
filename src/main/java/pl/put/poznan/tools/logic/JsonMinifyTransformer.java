@@ -7,18 +7,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * A concrete decorator in the Decorator design pattern that minifies JSON object
  * by removing unnecessary whitespace and formatting.
- * <p>
  * This class wraps another {@link JsonTransformer} and provides a utility method
  * to convert the transformed JSON into a compact, single-line string format.
- * </p>
  *
- * <p>
  * Example usage:
  * <pre>
  * JsonTransformer transformer = new JsonMinifyTransformer(new IdentityJsonTransformer());
  * String mini = transformer.transform(originalJson);
  * </pre>
- * </p>
  */
 public class JsonMinifyTransformer implements JsonTransformer {
 

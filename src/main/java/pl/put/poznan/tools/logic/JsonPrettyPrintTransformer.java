@@ -6,18 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * A concrete decorator in the Decorator design pattern that pretty-prints a JSON object.
- * <p>
  * This class wraps another {@link JsonTransformer} and applies an additional transformation
  * that outputs the JSON in a human-readable, indented format.
- * </p>
  *
- * <p>
  * Example usage:
  * <pre>
  * JsonTransformer transformer = new JsonPrettyPrintTransformer(new IdentityJsonTransformer());
  * String prettyprint = transformer.transform(originalJson);
  * </pre>
- * </p>
  */
 public class JsonPrettyPrintTransformer implements JsonTransformer {
 

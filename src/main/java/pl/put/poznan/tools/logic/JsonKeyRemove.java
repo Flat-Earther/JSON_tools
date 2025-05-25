@@ -9,19 +9,15 @@ import java.util.Set;
 
 /**
  * A concrete decorator in the Decorator design pattern that removes specified keys from a JSON object.
- * <p>
  * This class wraps another {@link JsonTransformer} and applies an additional transformation
  * that removes specific keys from the JSON object based on the {@code keysToRemove} set.
- * </p>
  *
- * <p>
  * Example usage:
  * <pre>
  * Set&lt;String&gt; keysToRemove = Set.of("password", "ssn");
  * JsonTransformer transformer = new JsonKeyRemove(new IdentityJsonTransformer(), keysToRemove);
  * String filtered = transformer.transform(originalJsonString);
  * </pre>
- * </p>
  */
 public class JsonKeyRemove implements JsonTransformer {
 

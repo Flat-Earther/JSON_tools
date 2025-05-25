@@ -9,19 +9,15 @@ import java.util.Set;
 
 /**
  * A concrete decorator in the Decorator design pattern that filters a JSON object to retain only a specified subset of keys.
- * <p>
  * This class wraps another {@link JsonTransformer} and applies an additional transformation
  * that removes all keys from the JSON object except those explicitly specified in the {@code keysToKeep} set.
- * </p>
  *
- * <p>
  * Example usage:
  * <pre>
  * Set&lt;String&gt; keys = Set.of("name", "age");
  * JsonTransformer transformer = new JsonKeyFilter(new IdentityJsonTransformer(), keys);
  * String filteredJson = transformer.transform(originalJsonString);
  * </pre>
- * </p>
  */
 public class JsonKeyFilter implements JsonTransformer {
 

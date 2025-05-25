@@ -11,6 +11,7 @@ import pl.put.poznan.tools.logic.JsonMinifyTransformer;
 import pl.put.poznan.tools.logic.JsonPrettyPrintTransformer;
 import pl.put.poznan.tools.logic.JsonTransformer;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -31,6 +32,16 @@ public class JSONToolsApplication {
                 "    { \"title\": \"Project B\", \"year\": 2022, \"status\": \"ongoing\" }\n" +
                 "  ]\n" +
                 "}";
+
+        String json2 = "{\n" +
+                "  \"name\": \"Alicja\",\n" +
+                "  \"age\": 30,\n" +
+                "  \"city\": \"New York\",\n" +
+                "  \"email\": \"alice@exmaple.com\",\n" +
+                "  \"projects\": [\n" +
+                "    { \"title\": \"Project A\", \"year\": 2021, \"status\": \"completed\" },\n" +
+                "    { \"title\": \"Project B\", \"year\": 2023, \"status\": \"ongoing\" }\n" +
+                "  ]\n";
 
         Set<String> keysToRemove = Set.of("name", "age", "projects");
 
@@ -71,6 +82,20 @@ public class JSONToolsApplication {
 
         } catch (Exception e) {
             System.err.println("\nInvalid JSON: " + e.getMessage());
+        }
+
+        try {
+            System.out.println("\n--- TextComparer Output ---");
+
+            pl.put.poznan.tools.logic.TextComparer comparer = new pl.put.poznan.tools.logic.TextComparer(json, json2);
+
+            List<String> differences = comparer.compareFiles();
+            for (String line : differences) {
+                System.out.println(line);
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error during text comparison: " + e.getMessage());
         }
         // ------------------------------------------------------------
 

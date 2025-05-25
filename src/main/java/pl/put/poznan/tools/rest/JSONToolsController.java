@@ -48,7 +48,7 @@ public class JSONToolsController {
     public ResponseEntity<?> keyRemove(@RequestBody String[] jsons) {
         try {
             if (jsons.length != 2) {
-                throw new IllegalArgumentException("Exactly two JSON structures must be provided.");
+                throw new IllegalArgumentException("Exactly two texts must be provided to compare.");
             }
 
             TextComparer comparer = new TextComparer(jsons[0], jsons[1]);

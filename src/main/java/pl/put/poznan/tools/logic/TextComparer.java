@@ -16,7 +16,7 @@ public class TextComparer {
         this.text2 = text2;
     }
 
-    public List<String> compareFiles() {
+    public String compare() {
         List<String> differences = new ArrayList<>();
 
         List<String> lines1 = text1.lines().collect(Collectors.toList());
@@ -36,7 +36,7 @@ public class TextComparer {
                 differences.add("Difference in line " + (i + 1) + ":\n  File 1: " + line1 + "\n  File 2: " + line2);
             }
         }
-        return(differences);
+        return String.join("\n", differences );
     }
 }
 

@@ -14,8 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
-
 
 @RestController
 @RequestMapping("/api/json")

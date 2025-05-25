@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TextComparer {
     private final String text1;
@@ -18,8 +19,8 @@ public class TextComparer {
     public List<String> compareFiles() {
         List<String> differences = new ArrayList<>();
 
-        List<String> lines1 = new ArrayList<>(text1.lines().toList());
-        List<String> lines2 = new ArrayList<>(text2.lines().toList());
+        List<String> lines1 = text1.lines().collect(Collectors.toList());
+        List<String> lines2 = text2.lines().collect(Collectors.toList());
 
         int maxLines = Math.max(lines1.size(), lines2.size());
 

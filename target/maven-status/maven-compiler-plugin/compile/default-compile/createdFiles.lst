@@ -1,0 +1,10 @@
+pl/put/poznan/tools/logic/JsonKeyRemove.class
+pl/put/poznan/tools/logic/IdentityJsonTransformer.class
+pl/put/poznan/tools/rest/JSONToolsController.class
+pl/put/poznan/tools/logic/JSONTools.class
+pl/put/poznan/tools/logic/JsonKeyFilter.class
+pl/put/poznan/tools/logic/JsonMinifyTransformer.class
+pl/put/poznan/tools/logic/JsonPrettyPrintTransformer.class
+pl/put/poznan/tools/app/JSONToolsApplication.class
+pl/put/poznan/tools/logic/JsonTransformer.class
+pl/put/poznan/tools/logic/TextComparer.class

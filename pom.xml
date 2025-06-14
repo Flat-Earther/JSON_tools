@@ -68,6 +68,13 @@
             <version>5.18.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.14.8</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 

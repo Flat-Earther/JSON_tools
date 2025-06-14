@@ -1,0 +1,104 @@
+-------------------------------------------------------------------------------
+Test set: pl.put.poznan.tools.logic.JsonKeyRemoveTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.075 s <<< FAILURE! - in pl.put.poznan.tools.logic.JsonKeyRemoveTest
+testEmptyInput  Time elapsed: 0.062 s  <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.reflect.InvocationTargetException
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+
+It seems like you are running Mockito with an incomplete or inconsistent class path. Byte Buddy could not be loaded.
+
+Byte Buddy is available on Maven Central as 'net.bytebuddy:byte-buddy' with the module name 'net.bytebuddy'.
+For the inline mock maker, 'net.bytebuddy:byte-buddy-agent' with the module name 'net.bytebuddy.agent' is also required.
+Normally, your IDE or build tool (such as Maven or Gradle) should take care of your class path completion but 
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.NoClassDefFoundError: net/bytebuddy/utility/GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.ClassNotFoundException: net.bytebuddy.utility.GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+
+testNestedObjectKeyRemoval  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.reflect.InvocationTargetException
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+
+It seems like you are running Mockito with an incomplete or inconsistent class path. Byte Buddy could not be loaded.
+
+Byte Buddy is available on Maven Central as 'net.bytebuddy:byte-buddy' with the module name 'net.bytebuddy'.
+For the inline mock maker, 'net.bytebuddy:byte-buddy-agent' with the module name 'net.bytebuddy.agent' is also required.
+Normally, your IDE or build tool (such as Maven or Gradle) should take care of your class path completion but 
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.NoClassDefFoundError: net/bytebuddy/utility/GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.ClassNotFoundException: net.bytebuddy.utility.GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+
+testEmptyOutput  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.reflect.InvocationTargetException
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+
+It seems like you are running Mockito with an incomplete or inconsistent class path. Byte Buddy could not be loaded.
+
+Byte Buddy is available on Maven Central as 'net.bytebuddy:byte-buddy' with the module name 'net.bytebuddy'.
+For the inline mock maker, 'net.bytebuddy:byte-buddy-agent' with the module name 'net.bytebuddy.agent' is also required.
+Normally, your IDE or build tool (such as Maven or Gradle) should take care of your class path completion but 
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.NoClassDefFoundError: net/bytebuddy/utility/GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.ClassNotFoundException: net.bytebuddy.utility.GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+
+testKeyRemoval  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.reflect.InvocationTargetException
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+
+It seems like you are running Mockito with an incomplete or inconsistent class path. Byte Buddy could not be loaded.
+
+Byte Buddy is available on Maven Central as 'net.bytebuddy:byte-buddy' with the module name 'net.bytebuddy'.
+For the inline mock maker, 'net.bytebuddy:byte-buddy-agent' with the module name 'net.bytebuddy.agent' is also required.
+Normally, your IDE or build tool (such as Maven or Gradle) should take care of your class path completion but 
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.NoClassDefFoundError: net/bytebuddy/utility/GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.ClassNotFoundException: net.bytebuddy.utility.GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+
+testUnexistingKeyRemoval  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.reflect.InvocationTargetException
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+
+It seems like you are running Mockito with an incomplete or inconsistent class path. Byte Buddy could not be loaded.
+
+Byte Buddy is available on Maven Central as 'net.bytebuddy:byte-buddy' with the module name 'net.bytebuddy'.
+For the inline mock maker, 'net.bytebuddy:byte-buddy-agent' with the module name 'net.bytebuddy.agent' is also required.
+Normally, your IDE or build tool (such as Maven or Gradle) should take care of your class path completion but 
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.NoClassDefFoundError: net/bytebuddy/utility/GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+Caused by: java.lang.ClassNotFoundException: net.bytebuddy.utility.GraalImageCode
+	at pl.put.poznan.tools.logic.JsonKeyRemoveTest.setup(JsonKeyRemoveTest.java:19)
+
